@@ -1,0 +1,504 @@
+:root {
+  --bg: #050805;
+  --surface: rgba(12, 18, 11, 0.86);
+  --line: rgba(213, 255, 50, 0.18);
+  --green: #d9ff2f;
+  --green-soft: #8fbe24;
+  --text: #f6f8f2;
+  --muted: #a6afa1;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+button, a {
+  font: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+main {
+  overflow: hidden;
+}
+
+.nav {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 20;
+  height: 84px;
+  padding: 0 4vw;
+  display: grid;
+  grid-template-columns: 220px 1fr 220px;
+  align-items: center;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+  background: linear-gradient(to bottom, rgba(2,5,2,.96), rgba(2,5,2,.72));
+  backdrop-filter: blur(16px);
+}
+
+.brand img {
+  width: 170px;
+  height: auto;
+  object-fit: contain;
+}
+
+.navLinks {
+  display: flex;
+  justify-content: center;
+  gap: 34px;
+  text-transform: uppercase;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: .09em;
+}
+
+.navLinks a {
+  color: #e6eae2;
+}
+
+.navLinks a:hover {
+  color: var(--green);
+}
+
+.navButton, .primaryButton {
+  justify-self: end;
+  border: 1px solid var(--green);
+  border-radius: 999px;
+  padding: 14px 24px;
+  color: var(--green);
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: .07em;
+}
+
+.hero {
+  min-height: 100vh;
+  position: relative;
+  display: grid;
+  place-items: center;
+  padding: 140px 24px 80px;
+  background:
+    radial-gradient(circle at 50% 78%, rgba(221,255,47,.20), transparent 22%),
+    radial-gradient(circle at 50% 42%, rgba(58,106,25,.48), transparent 34%),
+    linear-gradient(180deg, #031006 0%, #07120a 55%, #040704 100%);
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: .42;
+  background-image:
+    linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+  background-size: 70px 70px;
+  mask-image: linear-gradient(to bottom, transparent, black 28%, black 75%, transparent);
+}
+
+.heroContent {
+  position: relative;
+  z-index: 3;
+  width: min(980px, 100%);
+  text-align: center;
+}
+
+.eyebrow {
+  color: var(--green);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+}
+
+.heroLogo {
+  width: min(820px, 92vw);
+  height: auto;
+  margin: 8px auto -8px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 30px rgba(202,255,31,.28));
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: clamp(24px, 3vw, 43px);
+  letter-spacing: .38em;
+  font-weight: 800;
+}
+
+.heroText {
+  width: min(640px, 100%);
+  margin: 24px auto 34px;
+  color: #c5cdc0;
+  font-size: 17px;
+  line-height: 1.7;
+}
+
+.countdownLabel {
+  margin-bottom: 17px;
+  color: var(--green);
+  font-size: 12px;
+  letter-spacing: .28em;
+  font-weight: 900;
+}
+
+.countdown {
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  margin-bottom: 36px;
+}
+
+.timeBlock {
+  width: 150px;
+  padding: 5px 22px;
+  border-right: 1px solid rgba(255,255,255,.15);
+}
+
+.timeBlock:last-child {
+  border-right: 0;
+}
+
+.timeBlock strong {
+  display: block;
+  color: var(--green);
+  font-size: clamp(32px, 4vw, 58px);
+  line-height: 1;
+}
+
+.timeBlock span {
+  display: block;
+  margin-top: 9px;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: .25em;
+}
+
+.primaryButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 28px;
+  justify-self: auto;
+  background: var(--green);
+  color: #071006;
+  border-radius: 6px;
+  padding: 18px 30px;
+}
+
+.glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(130px);
+  opacity: .25;
+}
+
+.glowOne {
+  width: 360px;
+  height: 360px;
+  background: #6ccf2c;
+  top: 16%;
+  left: 2%;
+}
+
+.glowTwo {
+  width: 420px;
+  height: 420px;
+  background: #dfff20;
+  bottom: 2%;
+  right: -100px;
+}
+
+.heroShade {
+  position: absolute;
+  inset: auto 0 0;
+  height: 210px;
+  background: linear-gradient(to bottom, transparent, var(--bg));
+}
+
+.missionIntro, .missionsSection, .premiere {
+  padding: 100px 7vw;
+}
+
+.missionIntro {
+  max-width: 1050px;
+  margin: auto;
+  text-align: center;
+}
+
+.missionIntro h2, .sectionHeading h2, .premiere h2 {
+  margin: 12px 0 18px;
+  font-size: clamp(34px, 5vw, 68px);
+  line-height: .98;
+}
+
+.missionIntro > p:last-child {
+  max-width: 760px;
+  margin: auto;
+  color: var(--muted);
+  font-size: 18px;
+  line-height: 1.75;
+}
+
+.missionsSection {
+  background: #070b07;
+}
+
+.sectionHeading {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 20px;
+  max-width: 1280px;
+  margin: auto;
+}
+
+.progressText {
+  color: var(--muted);
+  font-weight: 800;
+}
+
+.progressTrack {
+  max-width: 1280px;
+  height: 8px;
+  margin: 30px auto 42px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #1a2118;
+}
+
+.progressFill {
+  height: 100%;
+  border-radius: inherit;
+  background: var(--green);
+  box-shadow: 0 0 20px rgba(217,255,47,.55);
+  transition: width .35s ease;
+}
+
+.missionGrid {
+  max-width: 1280px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+
+.missionCard {
+  min-height: 315px;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(255,255,255,.09);
+  border-radius: 18px;
+  background: linear-gradient(155deg, rgba(255,255,255,.055), rgba(255,255,255,.018));
+}
+
+.missionCard.done {
+  border-color: rgba(217,255,47,.55);
+  background: linear-gradient(155deg, rgba(217,255,47,.11), rgba(255,255,255,.018));
+}
+
+.missionDay {
+  color: var(--green);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .23em;
+}
+
+.missionCard h3 {
+  margin: 44px 0 15px;
+  font-size: 25px;
+  line-height: 1.08;
+}
+
+.missionCard p {
+  margin: 0 0 25px;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.missionCard button {
+  margin-top: auto;
+  width: 100%;
+  border: 1px solid rgba(217,255,47,.42);
+  border-radius: 8px;
+  padding: 14px 12px;
+  color: var(--green);
+  background: transparent;
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .05em;
+}
+
+.missionCard.done button {
+  background: var(--green);
+  color: #071006;
+}
+
+.premiere {
+  min-height: 620px;
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(circle at 75% 50%, rgba(217,255,47,.11), transparent 27%),
+    #030503;
+}
+
+.premiereCard {
+  width: min(1180px, 100%);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 50px;
+  padding: 56px;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: var(--surface);
+  box-shadow: 0 30px 90px rgba(0,0,0,.45);
+}
+
+.premiereCard p:not(.eyebrow) {
+  max-width: 690px;
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 1.7;
+}
+
+.videoButton {
+  min-width: 265px;
+  padding: 20px 28px;
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: 10px;
+  background: #1b1d1a;
+  color: #777d73;
+  font-weight: 900;
+}
+
+.videoButton.unlocked {
+  border-color: var(--green);
+  background: var(--green);
+  color: #061005;
+  cursor: pointer;
+  box-shadow: 0 0 35px rgba(217,255,47,.28);
+}
+
+footer {
+  min-height: 180px;
+  padding: 45px 7vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid rgba(255,255,255,.08);
+  color: var(--muted);
+}
+
+footer img {
+  width: 145px;
+  height: auto;
+  object-fit: contain;
+}
+
+@media (max-width: 980px) {
+  .nav {
+    grid-template-columns: 1fr auto;
+  }
+
+  .navLinks {
+    display: none;
+  }
+
+  .missionGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .premiereCard {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .nav {
+    height: 74px;
+    padding: 0 18px;
+  }
+
+  .brand img {
+    width: 125px;
+  }
+
+  .navButton {
+    padding: 11px 14px;
+    font-size: 10px;
+  }
+
+  .hero {
+    padding-top: 115px;
+  }
+
+  .hero h1 {
+    letter-spacing: .18em;
+  }
+
+  .heroText {
+    font-size: 15px;
+  }
+
+  .countdown {
+    width: 100%;
+  }
+
+  .timeBlock {
+    width: 25%;
+    padding: 4px 7px;
+  }
+
+  .timeBlock strong {
+    font-size: 29px;
+  }
+
+  .timeBlock span {
+    font-size: 7px;
+    letter-spacing: .12em;
+  }
+
+  .missionIntro, .missionsSection, .premiere {
+    padding: 78px 20px;
+  }
+
+  .sectionHeading {
+    display: block;
+  }
+
+  .missionGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .premiereCard {
+    padding: 30px 22px;
+  }
+
+  .videoButton {
+    width: 100%;
+    min-width: 0;
+  }
+
+  footer {
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+  }
+}
