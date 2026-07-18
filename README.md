@@ -2,43 +2,26 @@
 
 Plataforma oficial de ENVIA2 para Congreso Activa.
 
-## Estreno configurado
+## Estreno
+- 31 de agosto de 2026
+- 8:00 PM
+- Hora de Nueva York / Nueva Jersey
 
-- Fecha: 31 de agosto de 2026
-- Hora: 8:00 PM
-- Zona horaria: Nueva York / Nueva Jersey (`-04:00` durante agosto)
+## Subir esta V2 a GitHub
+1. Descomprime el ZIP.
+2. En GitHub abre `Add file → Upload files`.
+3. Sube todos los archivos y carpetas que están dentro.
+4. Usa el commit: `Configurar ENVIA2 para Vercel`.
+5. Puedes reemplazar los archivos existentes.
+6. Regresa a Vercel y actualiza la página.
+7. Si aún aparece `Other`, abre `Application Preset` y selecciona manualmente `Next.js`.
+8. Presiona `Deploy`.
 
-## Cómo subirlo a GitHub
-
-1. Descomprime este proyecto.
-2. En el repositorio `enviados-la-mision`, selecciona **Add file → Upload files**.
-3. Arrastra todos los archivos y carpetas del proyecto, no la carpeta contenedora.
-4. Confirma con **Commit changes**.
-5. Regresa a Vercel e importa el repositorio.
-6. Vercel detectará automáticamente **Next.js**.
-7. Presiona **Deploy**.
-
-## Agregar el video
-
-Cuando tengas el enlace oficial, abre:
-
-`app/page.js`
-
-Busca:
+## Enlace del videoclip
+En `app/page.js`, reemplaza:
 
 ```js
 const VIDEO_URL = "";
 ```
 
-Y reemplázalo por:
-
-```js
-const VIDEO_URL = "https://youtu.be/TU_VIDEO";
-```
-
-## Uso local
-
-```bash
-npm install
-npm run dev
-```
+por el enlace oficial cuando esté disponible.
