@@ -746,3 +746,61 @@ body{
  transform:translateZ(0)!important;
 }
 }
+/* ===== MOBILE POLISH V4.6 ===== */
+@media (max-width:680px){
+
+.hero{
+    padding:82px 18px 60px !important;
+}
+
+.heroLogo{
+    width:min(88vw,390px)!important;
+    margin:4px auto 10px!important;
+}
+
+.hero h1{
+    line-height:1.05!important;
+    margin-top:10px!important;
+}
+
+.heroText{
+    margin:18px auto 24px!important;
+}
+
+.countdown{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    width:100%;
+    margin-top:30px;
+}
+
+.timeBlock{
+    width:25%;
+    padding:12px 4px!important;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:flex-start;
+}
+
+.timeBlock strong{
+    font-size:34px!important;
+    margin-bottom:10px;
+}
+
+.timeBlock span{
+    font-size:9px!important;
+    letter-spacing:.16em!important;
+    line-height:1.4!important;
+}
+
+.scrollCue{
+    display:none!important;
+}
+
+.navButton{
+    padding:10px 14px!important;
+    font-size:9px!important;
+}
+}
