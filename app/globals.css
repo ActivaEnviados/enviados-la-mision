@@ -690,3 +690,59 @@ footer a { color: var(--green); font-weight: 900; }
     width: calc(100vw - 32px);
   }
 }
+
+
+
+/* ===== ENVIA2 MOBILE HOTFIX ===== */
+@media (max-width:768px){
+
+.heroLogo{
+ animation:none!important;
+ opacity:1!important;
+ transform:none!important;
+ filter:none!important;
+ -webkit-filter:none!important;
+ width:min(82vw,360px);
+ margin:12px auto 20px;
+}
+
+.hero{
+ padding-top:72px!important;
+ padding-bottom:48px!important;
+ min-height:auto!important;
+}
+
+.heroActions{
+ display:flex!important;
+ flex-direction:column!important;
+ gap:14px!important;
+}
+
+.heroActions a,
+.heroActions button{
+ width:100%!important;
+ min-height:56px!important;
+}
+
+.countdown{
+ width:100%!important;
+}
+
+h1{
+ line-height:1!important;
+}
+
+body{
+ overflow-x:hidden;
+}
+}
+
+/* Safari iPhone */
+@supports (-webkit-touch-callout:none){
+.heroLogo{
+ animation:none!important;
+ filter:none!important;
+ -webkit-filter:none!important;
+ transform:translateZ(0)!important;
+}
+}
