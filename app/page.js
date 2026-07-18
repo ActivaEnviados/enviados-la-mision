@@ -17,7 +17,7 @@ const SOCIALS = [
 const missions = [
   {
     id: 1,
-    unlockAt: "2026-07-25T06:00:00-04:00",
+    unlockAt: "2026-07-25T00:00:00-04:00",
     day: "DÍA 1",
     title: "Ora por tres personas",
     text: "Escribe tres nombres y dedica al menos cinco minutos a interceder por cada persona.",
@@ -26,7 +26,7 @@ const missions = [
   },
   {
     id: 2,
-    unlockAt: "2026-07-26T06:00:00-04:00",
+    unlockAt: "2026-07-26T00:00:00-04:00",
     day: "DÍA 2",
     title: "Envía una palabra de ánimo",
     text: "Comparte un mensaje sincero con alguien que necesite recordar que Dios no lo ha olvidado.",
@@ -35,7 +35,7 @@ const missions = [
   },
   {
     id: 3,
-    unlockAt: "2026-07-27T06:00:00-04:00",
+    unlockAt: "2026-07-27T00:00:00-04:00",
     day: "DÍA 3",
     title: "Sirve sin anunciarlo",
     text: "Haz una acción práctica de amor sin publicarla ni esperar reconocimiento.",
@@ -44,7 +44,7 @@ const missions = [
   },
   {
     id: 4,
-    unlockAt: "2026-07-28T06:00:00-04:00",
+    unlockAt: "2026-07-28T00:00:00-04:00",
     day: "DÍA 4",
     title: "Comparte tu testimonio",
     text: "Cuenta en menos de dos minutos una forma concreta en la que Dios transformó tu vida.",
@@ -53,7 +53,7 @@ const missions = [
   },
   {
     id: 5,
-    unlockAt: "2026-07-29T06:00:00-04:00",
+    unlockAt: "2026-07-29T00:00:00-04:00",
     day: "DÍA 5",
     title: "Invita a una persona",
     text: "Invita personalmente a alguien a conocer el mensaje de Jesús y acompáñalo en el proceso.",
@@ -62,7 +62,7 @@ const missions = [
   },
   {
     id: 6,
-    unlockAt: "2026-07-30T06:00:00-04:00",
+    unlockAt: "2026-07-30T00:00:00-04:00",
     day: "DÍA 6",
     title: "Comparte esperanza",
     text: "Publica una frase, versículo o video que dirija la atención hacia Jesús, no hacia ti.",
@@ -71,7 +71,7 @@ const missions = [
   },
   {
     id: 7,
-    unlockAt: "2026-07-31T06:00:00-04:00",
+    unlockAt: "2026-07-31T00:00:00-04:00",
     day: "DÍA 7",
     title: "Activa a otro enviado",
     text: "Reta a otra persona a completar una misión y caminar contigo durante el lanzamiento.",
@@ -99,14 +99,25 @@ function getCountdown(target) {
 export default function Home() {
   const [now, setNow] = useState(Date.now());
   const [completed, setCompleted] = useState([]);
+  const [notice, setNotice] = useState("");
 
   useEffect(() => {
-    const saved = JSON.parse(localStorage.getItem("envia2-v4-missions") || "[]");
-    setCompleted(saved);
+    try {
+      const saved = JSON.parse(localStorage.getItem("envia2-v4-missions") || "[]");
+      setCompleted(Array.isArray(saved) ? saved : []);
+    } catch {
+      setCompleted([]);
+    }
 
     const timer = window.setInterval(() => setNow(Date.now()), 1000);
     return () => window.clearInterval(timer);
   }, []);
+
+  useEffect(() => {
+    if (!notice) return;
+    const timer = window.setTimeout(() => setNotice(""), 3200);
+    return () => window.clearTimeout(timer);
+  }, [notice]);
 
   const countdown = useMemo(() => getCountdown(RELEASE_AT), [now]);
   const unlockedMissions = missions.filter(
@@ -117,15 +128,29 @@ export default function Home() {
     return sum + (mission?.points || 0);
   }, 0);
   const progress = Math.round((completed.length / missions.length) * 100);
+  const nextMission = missions.find(
+    (mission) => now < new Date(mission.unlockAt).getTime()
+  );
+  const allCompleted = completed.length === missions.length;
 
   function toggleMission(id, unlocked) {
     if (!unlocked) return;
-    const next = completed.includes(id)
+
+    const wasCompleted = completed.includes(id);
+    const next = wasCompleted
       ? completed.filter((item) => item !== id)
       : [...completed, id];
 
     setCompleted(next);
     localStorage.setItem("envia2-v4-missions", JSON.stringify(next));
+
+    if (!wasCompleted) {
+      setNotice(
+        next.length === missions.length
+          ? "¡Completaste las 7 misiones! Estás listo para ser ENVIA2."
+          : "Misión completada. Tu progreso se guardó automáticamente."
+      );
+    }
   }
 
   function openExternal(url, fallback) {
@@ -174,18 +199,26 @@ export default function Home() {
             />
           </div>
 
-          <h1>LA MISIÓN YA COMENZÓ</h1>
+          <h1>{countdown.released ? "LA MISIÓN HA COMENZADO" : "LA MISIÓN YA COMENZÓ"}</h1>
           <p className="heroText">
-            No fuiste llamado a observar. Fuiste enviado. Completa misiones,
-            comparte tu fe y conviértete en parte de una historia que alcanza personas.
+            {countdown.released
+              ? "El estreno ya está disponible. Comparte el mensaje, completa tu recorrido y vive como alguien que ha sido enviado."
+              : "No fuiste llamado a observar. Fuiste enviado. Completa misiones, comparte tu fe y conviértete en parte de una historia que alcanza personas."}
           </p>
 
           <div className="heroActions">
             <button
               className="primaryButton"
-              onClick={() => openExternal(TRAILER_URL, "El tráiler todavía no ha sido agregado.")}
+              onClick={() =>
+                openExternal(
+                  countdown.released ? VIDEO_URL : TRAILER_URL,
+                  countdown.released
+                    ? "El estreno ya está habilitado, pero todavía falta agregar el enlace oficial del videoclip."
+                    : "El tráiler todavía no ha sido agregado."
+                )
+              }
             >
-              ▶ VER TRÁILER
+              {countdown.released ? "▶ VER VIDEO OFICIAL" : "▶ VER TRÁILER"}
             </button>
             <a className="secondaryButton" href="#misiones">ACEPTAR LA MISIÓN</a>
           </div>
@@ -194,19 +227,26 @@ export default function Home() {
             {countdown.released ? "EL ESTRENO YA ESTÁ DISPONIBLE" : "ESTRENO OFICIAL EN"}
           </div>
 
-          <div className="countdown" aria-live="polite">
-            {[
-              ["DÍAS", countdown.days],
-              ["HORAS", countdown.hours],
-              ["MINUTOS", countdown.minutes],
-              ["SEGUNDOS", countdown.seconds],
-            ].map(([label, value]) => (
-              <div className="timeBlock" key={label}>
-                <strong>{String(value).padStart(2, "0")}</strong>
-                <span>{label}</span>
-              </div>
-            ))}
-          </div>
+          {countdown.released ? (
+            <div className="releaseLive" aria-live="polite">
+              <span className="liveDot" />
+              ESTRENO DISPONIBLE AHORA
+            </div>
+          ) : (
+            <div className="countdown" aria-live="polite">
+              {[
+                ["DÍAS", countdown.days],
+                ["HORAS", countdown.hours],
+                ["MINUTOS", countdown.minutes],
+                ["SEGUNDOS", countdown.seconds],
+              ].map(([label, value]) => (
+                <div className="timeBlock" key={label}>
+                  <strong>{String(value).padStart(2, "0")}</strong>
+                  <span>{label}</span>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
 
         <a className="scrollCue" href="#mision" aria-label="Continuar">
@@ -276,6 +316,32 @@ export default function Home() {
           <div className="progressFill" style={{ width: `${progress}%` }} />
         </div>
 
+        <div className={`journeyStatus ${allCompleted ? "complete" : ""}`}>
+          {allCompleted ? (
+            <>
+              <strong>¡ESTÁS LISTO PARA SER ENVIA2!</strong>
+              <span>Completaste las siete misiones. La misión continúa fuera de esta pantalla.</span>
+            </>
+          ) : nextMission ? (
+            <>
+              <strong>PRÓXIMA MISIÓN</strong>
+              <span>
+                Se desbloquea automáticamente el{" "}
+                {new Date(nextMission.unlockAt).toLocaleDateString("es-US", {
+                  day: "numeric",
+                  month: "long",
+                  timeZone: "America/New_York",
+                })} a las 12:00 AM.
+              </span>
+            </>
+          ) : (
+            <>
+              <strong>TODAS LAS MISIONES ESTÁN DISPONIBLES</strong>
+              <span>Completa las que te falten; el progreso se guarda en este dispositivo.</span>
+            </>
+          )}
+        </div>
+
         <div className="missionGrid">
           {missions.map((mission) => {
             const unlocked = now >= new Date(mission.unlockAt).getTime();
@@ -283,6 +349,7 @@ export default function Home() {
             const unlockDate = new Date(mission.unlockAt).toLocaleDateString("es-US", {
               month: "short",
               day: "numeric",
+              timeZone: "America/New_York",
             });
 
             return (
@@ -373,6 +440,13 @@ export default function Home() {
           ))}
         </div>
       </section>
+
+      {notice && (
+        <div className="missionNotice" role="status" aria-live="polite">
+          <span>✓</span>
+          {notice}
+        </div>
+      )}
 
       <footer>
         <Image src="/envia2-logo.png" alt="ENVIA2" width={150} height={58} />
