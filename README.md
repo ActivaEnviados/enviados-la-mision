@@ -1,27 +1,20 @@
-# ENVIA2 — La Misión
+# ENVIA2 — La Misión V3
 
-Plataforma oficial de ENVIA2 para Congreso Activa.
+Versión limpia para Vercel.
 
-## Estreno
-- 31 de agosto de 2026
-- 8:00 PM
-- Hora de Nueva York / Nueva Jersey
+## Configuración
+- Next.js 16.2.10
+- React 19.2.0
+- Node.js 20.x
+- Sin `package-lock.json`
+- Registro público de npm configurado mediante `.npmrc`
 
-## Subir esta V2 a GitHub
+## Subida a GitHub
 1. Descomprime el ZIP.
-2. En GitHub abre `Add file → Upload files`.
-3. Sube todos los archivos y carpetas que están dentro.
-4. Usa el commit: `Configurar ENVIA2 para Vercel`.
-5. Puedes reemplazar los archivos existentes.
-6. Regresa a Vercel y actualiza la página.
-7. Si aún aparece `Other`, abre `Application Preset` y selecciona manualmente `Next.js`.
-8. Presiona `Deploy`.
+2. En el repositorio, usa **Add file → Upload files**.
+3. Sube todo el contenido de esta carpeta.
+4. Reemplaza los archivos existentes.
+5. Commit: `Subir V3 limpia de ENVIA2`
+6. Vercel desplegará el nuevo commit automáticamente.
 
-## Enlace del videoclip
-En `app/page.js`, reemplaza:
-
-```js
-const VIDEO_URL = "";
-```
-
-por el enlace oficial cuando esté disponible.
+Si necesitas hacerlo manualmente, abre el deployment nuevo y presiona **Redeploy** sin reutilizar caché.
