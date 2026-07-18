@@ -1,26 +1,19 @@
-# ENVIA2 — La Misión V4
+# ENVIA2 — La Misión V4.1
 
-Experiencia interactiva completa.
+Actualización del lanzamiento oficial.
 
-## Incluye
-- Hero cinematográfico animado
-- Cuenta regresiva al 31 de agosto de 2026, 8:00 PM
-- Siete misiones con desbloqueo diario
-- Progreso guardado en el navegador
-- Sistema local de puntos
-- Botón de video bloqueado hasta el estreno
-- Diseño responsive
+## Cambios
+- Estreno: viernes 31 de julio de 2026 a las 8:00 PM
+- Tráiler oficial conectado
+- Misiones del 25 al 31 de julio
+- El videoclip permanece bloqueado hasta el estreno
+
+## Tráiler
+https://www.youtube.com/watch?v=-m1LaDHvEHM
 
 ## Publicar
 1. Descomprime el ZIP.
-2. Sube todos los archivos a GitHub.
-3. Commit: `Publicar experiencia V4 de ENVIA2`
-4. Vercel publicará automáticamente.
-
-## Agregar enlaces
-Abre `app/page.js` y reemplaza:
-
-```js
-const VIDEO_URL = "";
-const TRAILER_URL = "";
-```
+2. En GitHub usa `Add file → Upload files`.
+3. Reemplaza los archivos existentes.
+4. Commit recomendado: `Actualizar estreno y trailer de ENVIA2`
+5. Vercel desplegará automáticamente.

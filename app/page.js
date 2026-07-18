@@ -3,14 +3,14 @@
 import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 
-const RELEASE_AT = "2026-08-31T20:00:00-04:00";
+const RELEASE_AT = "2026-07-31T20:00:00-04:00";
 const VIDEO_URL = "";
-const TRAILER_URL = "";
+const TRAILER_URL = "https://www.youtube.com/watch?v=-m1LaDHvEHM";
 
 const missions = [
   {
     id: 1,
-    unlockAt: "2026-08-24T06:00:00-04:00",
+    unlockAt: "2026-07-25T06:00:00-04:00",
     day: "DÍA 1",
     title: "Ora por tres personas",
     text: "Escribe tres nombres y dedica al menos cinco minutos a interceder por cada persona.",
@@ -19,7 +19,7 @@ const missions = [
   },
   {
     id: 2,
-    unlockAt: "2026-08-25T06:00:00-04:00",
+    unlockAt: "2026-07-26T06:00:00-04:00",
     day: "DÍA 2",
     title: "Envía una palabra de ánimo",
     text: "Comparte un mensaje sincero con alguien que necesite recordar que Dios no lo ha olvidado.",
@@ -28,7 +28,7 @@ const missions = [
   },
   {
     id: 3,
-    unlockAt: "2026-08-26T06:00:00-04:00",
+    unlockAt: "2026-07-27T06:00:00-04:00",
     day: "DÍA 3",
     title: "Sirve sin anunciarlo",
     text: "Haz una acción práctica de amor sin publicarla ni esperar reconocimiento.",
@@ -37,7 +37,7 @@ const missions = [
   },
   {
     id: 4,
-    unlockAt: "2026-08-27T06:00:00-04:00",
+    unlockAt: "2026-07-28T06:00:00-04:00",
     day: "DÍA 4",
     title: "Comparte tu testimonio",
     text: "Cuenta en menos de dos minutos una forma concreta en la que Dios transformó tu vida.",
@@ -46,7 +46,7 @@ const missions = [
   },
   {
     id: 5,
-    unlockAt: "2026-08-28T06:00:00-04:00",
+    unlockAt: "2026-07-29T06:00:00-04:00",
     day: "DÍA 5",
     title: "Invita a una persona",
     text: "Invita personalmente a alguien a conocer el mensaje de Jesús y acompáñalo en el proceso.",
@@ -55,7 +55,7 @@ const missions = [
   },
   {
     id: 6,
-    unlockAt: "2026-08-29T06:00:00-04:00",
+    unlockAt: "2026-07-30T06:00:00-04:00",
     day: "DÍA 6",
     title: "Comparte esperanza",
     text: "Publica una frase, versículo o video que dirija la atención hacia Jesús, no hacia ti.",
@@ -64,7 +64,7 @@ const missions = [
   },
   {
     id: 7,
-    unlockAt: "2026-08-30T06:00:00-04:00",
+    unlockAt: "2026-07-31T06:00:00-04:00",
     day: "DÍA 7",
     title: "Activa a otro enviado",
     text: "Reta a otra persona a completar una misión y caminar contigo durante el lanzamiento.",
@@ -292,7 +292,7 @@ export default function Home() {
       <section className="premiere" id="estreno">
         <div className="premiereGlow" />
         <div className="premiereContent">
-          <p className="eyebrow">31 DE AGOSTO · 8:00 PM</p>
+          <p className="eyebrow">31 DE JULIO · 8:00 PM</p>
           <h2>{countdown.released ? "La misión comienza ahora." : "El estreno permanece bloqueado."}</h2>
           <p>
             {countdown.released
