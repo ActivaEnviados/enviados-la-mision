@@ -1,19 +1,17 @@
-# ENVIA2 — La Misión V4.1
+# ENVIA2 — La Misión V4.2
 
-Actualización del lanzamiento oficial.
-
-## Cambios
-- Estreno: viernes 31 de julio de 2026 a las 8:00 PM
-- Tráiler oficial conectado
-- Misiones del 25 al 31 de julio
-- El videoclip permanece bloqueado hasta el estreno
-
-## Tráiler
-https://www.youtube.com/watch?v=-m1LaDHvEHM
+## Nuevas secciones
+- CTA “Quiero ser parte de Activa 2026”
+- Enlace directo al registro en Church Center
+- Redes oficiales de ACTIVA:
+  - YouTube
+  - Instagram
+  - Facebook
+  - TikTok
 
 ## Publicar
 1. Descomprime el ZIP.
 2. En GitHub usa `Add file → Upload files`.
 3. Reemplaza los archivos existentes.
-4. Commit recomendado: `Actualizar estreno y trailer de ENVIA2`
+4. Commit recomendado: `Agregar registro y redes de ACTIVA`
 5. Vercel desplegará automáticamente.

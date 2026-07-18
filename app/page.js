@@ -6,6 +6,13 @@ import { useEffect, useMemo, useState } from "react";
 const RELEASE_AT = "2026-07-31T20:00:00-04:00";
 const VIDEO_URL = "";
 const TRAILER_URL = "https://www.youtube.com/watch?v=-m1LaDHvEHM";
+const REGISTRATION_URL = "https://congreso-activa-521063.churchcenter.com/registrations/events/3427735";
+const SOCIALS = [
+  { name: "YouTube", handle: "@ACTIVAOFICIAL", url: "https://www.youtube.com/@ACTIVAOFICIAL", icon: "▶" },
+  { name: "Instagram", handle: "@fraternidadactiva", url: "https://www.instagram.com/fraternidadactiva", icon: "◎" },
+  { name: "Facebook", handle: "Congreso Activa Oficial", url: "https://www.facebook.com/congresoactivaoficial", icon: "f" },
+  { name: "TikTok", handle: "@congresoactiva", url: "https://www.tiktok.com/@congresoactiva", icon: "♪" },
+];
 
 const missions = [
   {
@@ -227,6 +234,27 @@ export default function Home() {
         </div>
       </section>
 
+
+      <section className="joinSection" id="registro">
+        <div className="joinGlow" />
+        <div className="joinContent">
+          <p className="eyebrow">CONGRESO ACTIVA 2026</p>
+          <h2>¿Responderás al llamado?</h2>
+          <p>
+            ENVIA2 es solo el comienzo. Vive la experiencia completa y sé parte
+            de un movimiento que está alcanzando vidas.
+          </p>
+          <a
+            className="joinButton"
+            href={REGISTRATION_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            QUIERO SER PARTE DE ACTIVA 2026 <span>↗</span>
+          </a>
+        </div>
+      </section>
+
       <section className="missionsSection" id="misiones">
         <div className="sectionHeading">
           <div>
@@ -312,6 +340,37 @@ export default function Home() {
           >
             {countdown.released ? "▶ VER VIDEO OFICIAL" : "🔒 VIDEO BLOQUEADO"}
           </button>
+        </div>
+      </section>
+
+
+      <section className="socialSection" id="redes">
+        <div className="socialHeading">
+          <p className="eyebrow">MANTENTE CONECTADO</p>
+          <h2>Sigue a ACTIVA</h2>
+          <p>
+            Conoce nuevas misiones, anuncios y todo lo relacionado con ENVIA2
+            y el Congreso Activa.
+          </p>
+        </div>
+
+        <div className="socialGrid">
+          {SOCIALS.map((social) => (
+            <a
+              className="socialCard"
+              href={social.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              key={social.name}
+            >
+              <span className="socialIcon">{social.icon}</span>
+              <div>
+                <strong>{social.name}</strong>
+                <small>{social.handle}</small>
+              </div>
+              <i>↗</i>
+            </a>
+          ))}
         </div>
       </section>
 
