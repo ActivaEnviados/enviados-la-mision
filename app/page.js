@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 
 const RELEASE_AT = "2026-07-31T20:00:00-04:00";
-const VIDEO_URL = "";
+const VIDEO_URL = "https://youtu.be/eE4N9j_6MNE";
 const TRAILER_URL = "https://www.youtube.com/watch?v=-m1LaDHvEHM";
 const REGISTRATION_URL = "https://congreso-activa-521063.churchcenter.com/registrations/events/3427735";
 const SOCIALS = [
