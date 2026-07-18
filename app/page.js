@@ -100,6 +100,9 @@ export default function Home() {
   const [now, setNow] = useState(Date.now());
   const [completed, setCompleted] = useState([]);
   const [notice, setNotice] = useState("");
+  const devMode =
+  typeof window !== "undefined" &&
+  new URLSearchParams(window.location.search).get("dev") === "true";
 
   useEffect(() => {
     try {
@@ -128,9 +131,11 @@ export default function Home() {
     return sum + (mission?.points || 0);
   }, 0);
   const progress = Math.round((completed.length / missions.length) * 100);
-  const nextMission = missions.find(
-    (mission) => now < new Date(mission.unlockAt).getTime()
-  );
+  const nextMission = devMode
+  ? null
+  : missions.find(
+      (mission) => now < new Date(mission.unlockAt).getTime()
+    );
   const allCompleted = completed.length === missions.length;
 
   function toggleMission(id, unlocked) {
@@ -344,7 +349,8 @@ export default function Home() {
 
         <div className="missionGrid">
           {missions.map((mission) => {
-            const unlocked = now >= new Date(mission.unlockAt).getTime();
+            const unlocked =
+  devMode || now >= new Date(mission.unlockAt).getTime();
             const done = completed.includes(mission.id);
             const unlockDate = new Date(mission.unlockAt).toLocaleDateString("es-US", {
               month: "short",
@@ -396,8 +402,10 @@ export default function Home() {
           </p>
 
           <button
-            className={`videoButton ${countdown.released ? "unlocked" : ""}`}
-            disabled={!countdown.released}
+            className={`videoButton ${
+  countdown.released || devMode ? "unlocked" : ""
+}`}
+            disabled={!(countdown.released || devMode)}
             onClick={() =>
               openExternal(
                 VIDEO_URL,
@@ -405,7 +413,9 @@ export default function Home() {
               )
             }
           >
-            {countdown.released ? "▶ VER VIDEO OFICIAL" : "🔒 VIDEO BLOQUEADO"}
+            {countdown.released || devMode
+  ? "▶ VER VIDEO OFICIAL"
+  : "🔒 VIDEO BLOQUEADO"}
           </button>
         </div>
       </section>
